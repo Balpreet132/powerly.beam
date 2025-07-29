@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>POWERLY</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background-color: #000;
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin: 2rem 0;
+      animation: pulseGlow 3s infinite;
+    }
+
+    h1 span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp 0.5s forwards;
+    }
+
+    h1 span:nth-child(1) { animation-delay: 0s; }
+    h1 span:nth-child(2) { animation-delay: 0.1s; }
+    h1 span:nth-child(3) { animation-delay: 0.2s; }
+    h1 span:nth-child(4) { animation-delay: 0.3s; }
+    h1 span:nth-child(5) { animation-delay: 0.4s; }
+    h1 span:nth-child(6) { animation-delay: 0.5s; }
+    h1 span:nth-child(7) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+      }
+      50% {
+        text-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+      }
+    }
+
+    .btn-discord {
+      display: block;
+      margin: 0 auto 2rem;
+      padding: 0.75rem 1.5rem;
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-discord:hover {
+      background-color: #7289da;
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #7289da80;
+    }
+
+    .main-container {
+      max-width: 800px;
+      margin: auto;
+      background: #111;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+      animation: slideUp 0.8s ease-in-out;
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.75rem;
+      animation: glowText 2.5s ease-in-out infinite;
+    }
+
+    @keyframes glowText {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 5px #0ff; }
+      50% { transform: scale(1.05); text-shadow: 0 0 20px #0ff; }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .grid.thirds {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 1rem;
+    }
+
+    .btn-box {
+      background-color: #222;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1.2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      cursor: pointer;
+      position: relative;
+      animation: slideFadeIn 1s ease-in-out both;
+    }
+
+    @keyframes slideFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn-box:hover {
+      background-color: #333;
+      transform: scale(1.07) rotate(1deg);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 8px #0ff inset;
+    }
+
+    .btn-box:active {
+      transform: scale(0.96);
+    }
+
+    .btn-box i {
+      font-size: 1.4rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-box:hover i {
+      transform: scale(1.3) rotate(8deg);
+      animation: bounce 0.6s;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .coin, .money {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      animation: fall 1.5s linear forwards;
+      z-index: 9999;
+    }
+
+    .coin {
+      background: gold;
+      box-shadow: 0 0 10px gold;
+    }
+
+    .money {
+      width: 40px;
+      height: 25px;
+      background: green;
+      border-radius: 4px;
+      box-shadow: 0 0 10px lime;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <h1 id="powerly-title"><span>P</span><span>O</span><span>W</span><span>E</span><span>R</span><span>L</span><span>Y</span></h1>
+  <button class="btn-discord" onclick="window.location.href='https://discord.gg/vQytYU9QND'">
+    <i class="fas fa-comments icon"></i> Join Community
+  </button>
+
+  <div class="main-container">
+    <div class="section-title">MAIN GENERATOR</div>
+    <div class="grid">
+      <div class="btn-box" onclick="window.location.href='https://app.beaming.pro/u/powerly'"><i class="fab fa-tiktok"></i>TikTok-Supported</div>
+      <div class="btn-box"><i class="fab fa-chrome"></i>Chrome-Supported</div>
+    </div>
+    <div class="grid thirds">
+      <div class="btn-box" onclick="window.location.href='https://www.logged.tg/auth/powerly'">
+        <i class="fas fa-cog"></i>Generator
+      </div>
+      <div class="btn-box" onclick="window.location.href='https://deathhyperlink.vercel.app/'">
+        <i class="fas fa-link"></i>Hyperlink
+      </div>
+      <div class="btn-box" onclick="window.location.href='https://logged.tg/tools/refresher'">
+        <i class="fas fa-sync"></i>Refresher
+      </div>
+    </div>
+  </div>
+
+  <div class="main-container" style="margin-top: 2rem">
+    <div class="section-title">TOOLS</div>
+    <div class="grid thirds">
+      <div class="btn-box"><i class="fas fa-video"></i>Video Tutorial</div>
+      <div class="btn-box"><i class="fas fa-code"></i>Methods</div>
+      <div class="btn-box"><i class="fas fa-code"></i>Bypasser</div>
+    </div>
+  </div>
+
+  <script>
+    let coinCount = 0;
+
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80 },
+        "color": { "value": "#ffffff" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "repulse": { "distance": 100 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+
+    const powerly = document.getElementById('powerly-title');
+    powerly.addEventListener('mouseenter', () => {
+      dropCoin();
+      coinCount++;
+      if (coinCount >= 5) {
+        for (let i = 0; i < 3; i++) {
+          setTimeout(dropMoney, i * 300);
+        }
+        coinCount = 0;
+      }
+    });
+
+    function dropCoin() {
+      const coin = document.createElement('div');
+      coin.classList.add('coin');
+      coin.style.left = (window.innerWidth / 2 - 15) + 'px';
+      coin.style.top = '0px';
+      document.body.appendChild(coin);
+      setTimeout(() => coin.remove(), 1500);
+    }
+
+    function dropMoney() {
+      const money = document.createElement('div');
+      money.classList.add('money');
+      money.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+      money.style.top = '0px';
+      document.body.appendChild(money);
+      setTimeout(() => money.remove(), 2000);
+    }
+  </script>
+</body>
+</html>
